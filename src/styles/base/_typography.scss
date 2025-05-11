@@ -1,0 +1,102 @@
+@import '@styles/abstracts/_variables';
+@import '@styles/abstracts/_mixins';
+
+// Utility Classes
+.hide { display: none; }
+
+.ir {
+  visibility: hidden;
+  overflow: hidden;
+  position: absolute;
+  left: -99999px;
+  width: 1%;
+  height: 1%;
+  @include margin(0);
+  @include padding(0);
+  font-size: 1%;
+  line-height: 1%;
+}
+
+.ir2 span {
+  display: inline-block;
+  position: relative;
+  z-index: -1;
+  height: 11px;
+  overflow: hidden;
+  font-size: 11px;
+  left: -3000em;
+}
+
+// Padding
+.pt0 { padding-top: 0 !important; }
+.pt3 { padding-top: 3px; }
+.pt15 { padding-top: 15px; }
+.pt20 { padding-top: 20px; }
+.pb10 { padding-bottom: 10px; }
+.pb15 { padding-bottom: 15px !important; }
+.pr15 { padding-right: 15px; }
+.pl15 { padding-left: 15px; }
+
+// Margin
+.ml10 { margin-left: 10px; }
+.mt70 { margin-top: 70px; }
+.mb10 { margin-bottom: 10px; }
+.mb40 { margin-bottom: 40px; }
+.mauto { margin: 0 auto; }
+
+// Text alignment
+.tc { text-align: center; }
+.tr { text-align: right; }
+
+// Float
+.fl { float: left; }
+.fr { float: right; }
+
+// Miscellaneous
+.ls { letter-spacing: -1px; }
+.vt { vertical-align: top; }
+.vm { vertical-align: middle; }
+.font_dotum { font-family: "돋움", Dotum; }
+.bold { font-weight: bold; }
+.ti18 { text-indent: 18px !important; }
+
+// Colors
+.black { color: $color-black; }
+.fc_blue { color: $color-blue !important; }
+.fc_blue2 { color: $color-light-blue !important; }
+.fc_999 { color: $color-gray; }
+
+// Clear
+.clear { clear: both; }
+
+// Readonly
+.readonly {
+  color: $color-dark-gray !important;
+  text-shadow: 1px 1px 1px #fff;
+  background: #f4f4f4 !important;
+  cursor: not-allowed;
+}
+
+// Top area
+.top_area .bt_prev { display: none; }
+
+// Clearfix
+.clearfix {
+  &::before, &::after {
+    content: "";
+    display: block;
+  }
+  &::after {
+    clear: both;
+  }
+}
+
+.position { position: relative; }
+
+.container { 
+    width: 1280px;
+    padding: 0 15px;
+    max-width: 1280px;
+    width: calc(100% - 30px);
+    margin: 0 auto;
+}
