@@ -1,210 +1,125 @@
-# 종합적인 Next.js 프로젝트 구조 및 설명
+# 프로젝트 구조 설명서 (THREED)
 
-```
-my-nextjs-project/
-├── app/
-│   ├── api/
-│   │   └── route.ts
-│   ├── (auth)/
-│   │   ├── login/
-│   │   │   └── page.tsx
-│   │   └── register/
-│   │       └── page.tsx
-│   ├── blog/
-│   │   ├── [slug]/
-│   │   │   └── page.tsx
-│   │   └── page.tsx
-│   ├── layout.tsx
-│   ├── page.tsx
-│   └── globals.css
-├── components/
-│   ├── ui/
-│   │   ├── Button.tsx
-│   │   └── Input.tsx
-│   ├── layout/
-│   │   ├── Header.tsx
-│   │   └── Footer.tsx
-│   └── features/
-│       └── MemberCarousel.tsx
-├── lib/
-│   └── utils.ts
-├── hooks/
-│   └── useCustomHook.ts
-├── types/
-│   └── index.ts
-├── services/
-│   ├── api.ts
-│   └── endpoints.ts
-├── repositories/
-│   ├── userRepository.ts
-│   ├── postRepository.ts
-│   └── index.ts
-├── public/
-│   ├── images/
-│   │   └── logo.png
-│   └── favicon.ico
-├── styles/
-│   └── Home.module.css
-├── tests/
-│   └── Home.test.tsx
-├── .env.local
-├── .eslintrc.json
+이 문서는 `THREED` 프로젝트의 기본 폴더 구조 및 주요 파일의 역할에 대해 설명합니다.
+
+---
+
+## 📁 루트 디렉터리 구조
+THREED/
+├── .next/ # Next.js에서 자동 생성되는 빌드 결과물
+├── node_modules/ # 설치된 NPM 패키지
+├── public/ # 정적 파일 (이미지, 폰트 등)
+├── src/ # 실제 프로젝트 소스 코드 폴더
 ├── .gitignore
-├── next.config.js
-├── package.json
-├── README.md
-└── tsconfig.json
+├── next-env.d.ts # TypeScript용 Next.js 환경 타입 선언
+├── eslint.config.mjs # 린트 설정
+├── tsconfig.json # TypeScript 설정
 
 
-home/
-├── components/
-│   ├── HomeCard.tsx
-│   ├── HomeFilter.tsx
-│   ├── HomeHeader.tsx
-│   ├── HomePagination.tsx
-│   └── HomeUserState.tsx
-├── constants/
-│   └── filterOptions.ts
-├── hooks/
-│   └── useHomeFilter.ts
-├── HomeComponent.tsx
-└── home.module.scss
-```
+---
 
-## 디렉토리 및 파일 설명
+## 📁 `public/`
 
-### `app/`
-- Next.js 13 이상에서 도입된 App Router를 사용하는 디렉토리
-- `api/`: API 라우트를 정의하는 디렉토리
-- `(auth)/`: 인증 관련 페이지를 그룹화한 라우트 그룹
-- `blog/`: 블로그 관련 페이지들
-- `[slug]/`: 동적 라우팅을 위한 디렉토리
-- `layout.tsx`: 전체 앱의 레이아웃 정의
-- `page.tsx`: 각 라우트의 페이지 컴포넌트
-- `globals.css`: 전역 스타일 정의
+- `images/` — 프로젝트에서 사용하는 정적 이미지 리소스
+- `fonts/` — 웹폰트가 있을 경우 이곳에 저장
 
-### `components/`
-- 재사용 가능한 React 컴포넌트들을 저장하는 디렉토리
-- `ui/`: 버튼, 입력 필드 등 기본 UI 컴포넌트
-- `layout/`: 헤더, 푸터 등 레이아웃 관련 컴포넌트
-- `features/`: 특정 기능과 관련된 더 큰 컴포넌트
+> 이 경로의 파일은 브라우저에서 `/images/파일명`으로 접근 가능
 
-### `lib/`
-- 유틸리티 함수, 헬퍼 등을 저장하는 디렉토리
+---
 
-### `hooks/`
-- 커스텀 React 훅을 저장하는 디렉토리
+## 📁 `src/`
 
-### `types/`
-- TypeScript 타입 정의를 저장하는 디렉토리
+### ✅ `app/`
 
-### `services/`
-- 외부 API와의 통신을 관리하는 서비스 로직을 포함
-- `api.ts`: Axios 인스턴스 설정 및 기본 요청 함수 정의
-- `endpoints.ts`: API 엔드포인트 URL 상수 정의
+- Next.js 13 이상 App Router 기능을 사용하며, `page.tsx` 기반의 라우팅
+- `/login`, `/post` 등의 폴더가 각각의 페이지 라우트
 
-### `repositories/`
-- 데이터 접근 로직을 캡슐화하는 리포지토리 패턴 구현
-- `userRepository.ts`: 사용자 관련 데이터 접근 로직
-- `postRepository.ts`: 게시물 관련 데이터 접근 로직
-- `index.ts`: 모든 리포지토리를 export하는 중앙 파일
-
-### `public/`
-- 정적 파일들(이미지, 폰트 등)을 저장하는 디렉토리
-
-### `styles/`
-- CSS 모듈 파일들을 저장하는 디렉토리
-
-### `tests/`
-- 테스트 파일들을 저장하는 디렉토리
-
-### 설정 파일들
-- `.env.local`: 환경 변수 설정
-- `.eslintrc.json`: ESLint 설정
-- `.gitignore`: Git에서 무시할 파일 목록
-- `next.config.js`: Next.js 설정
-- `package.json`: 프로젝트 의존성 및 스크립트 관리
-- `README.md`: 프로젝트 설명 문서
-- `tsconfig.json`: TypeScript 설정
-
-## SSR 데이터 fetching 예시
-
-`app/page.tsx`에서 SSR로 데이터를 가져오는 예시:
-
-```typescript
-import { userRepository } from '@/repositories';
-
-export default async function Home() {
-  const users = await userRepository.getUsers();
-
-  return (
-    <div>
-      <h1>Users</h1>
-      <ul>
-        {users.map(user => (
-          <li key={user.id}>{user.name}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-```
-
-## 서비스 및 리포지토리 구현 예시
-
-### `services/api.ts`
-```typescript
-import axios from 'axios';
-
-const api = axios.create({
-  baseURL: process.env.API_BASE_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
-
-export default api;
-```
-
-### `services/endpoints.ts`
-```typescript
-export const ENDPOINTS = {
-  USERS: '/users',
-  POSTS: '/posts',
-};
-```
-
-### `repositories/userRepository.ts`
-```typescript
-import api from '@/services/api';
-import { ENDPOINTS } from '@/services/endpoints';
-
-export const userRepository = {
-  getUsers: async () => {
-    const response = await api.get(ENDPOINTS.USERS);
-    return response.data;
-  },
-  // 추가 메서드...
-};
-```
-
-## 주요 특징 및 이점
-- App Router 사용으로 서버 컴포넌트와 클라이언트 컴포넌트의 효율적인 관리
-- 컴포넌트, 유틸리티, 훅 등의 명확한 분리로 코드 구조화
-- TypeScript 사용으로 타입 안정성 확보
-- 테스트 디렉토리를 통한 체계적인 테스트 관리
-- 정적 파일과 스타일의 별도 관리로 구조 최적화
-- 관심사 분리: API 통신과 데이터 접근 로직이 명확히 분리됨
-- 재사용성: 리포지토리 메서드를 여러 컴포넌트에서 쉽게 재사용 가능
-- 테스트 용이성: 서비스와 리포지토리를 독립적으로 테스트 가능
-- 유지보수성: 백엔드 API 변경 시 리포지토리만 수정하면 됨
-- SSR 최적화: 서버 사이드에서 효율적으로 데이터 fetching 가능
+예:
+/login/page.tsx => 도메인.com/login
+/post/page.tsx => 도메인.com/post
 
 
-## Local RUN
+### ✅ `components/`
 
-### 사이트 실행
+- 공통 컴포넌트들을 모아두는 곳
+- `page/home/components`처럼 특정 페이지에 종속적인 컴포넌트는 해당 위치에 작성
+
+### ✅ `styles/`
+
+- `abstracts/`: SCSS 변수, 믹스인 등 공통 스타일 유틸
+- `base/`: 리셋, 글로벌 스타일 등
+- `common.scss`: 전역에서 import되는 공통 스타일
+
+### ✅ `hooks/`
+
+- 커스텀 훅(`useLoader.ts` 등)을 정의하는 공간
+
+### ✅ `components/page/home/`
+
+- 홈 페이지 관련 컴포넌트와 스타일
+- `home.component.tsx`: 홈 페이지의 핵심 UI
+- `home.module.scss`: 홈 컴포넌트의 모듈 스타일
+
+---
+
+## 📄 주요 파일 설명
+
+- `layout.tsx`: App Router 기반의 공통 레이아웃 (헤더, 푸터 등 포함 가능)
+- `globals.scss`: 전체 프로젝트 공통 스타일 파일 (여기서 SCSS 모듈을 import 가능)
+- `favicon.ico`: 브라우저 탭 아이콘
+- `tsconfig.json`: 타입스크립트 관련 설정
+- `.gitignore`: Git에서 추적하지 않을 파일 목록
+
+---
+
+## 🔧 작업 시 주의사항
+
+- SCSS는 모듈 방식(`.module.scss`)을 기본으로 사용합니다.
+- 컴포넌트는 **기능 단위**, **페이지 단위**로 나누어 관리합니다.
+- 커스텀 훅은 `hooks/` 또는 컴포넌트 하위 폴더에 작성할 수 있습니다.
+- 이미지는 `public/images/` 경로에 두고, import 없이 URL로 접근합니다.
+
+---
+
+## ✏️ 기타 팁
+
+- `@/components/...`, `@/styles/...` 등 경로 alias 설정이 되어 있다면 import 시 편리하게 사용 가능합니다.
+- 코드 정리 시 `eslint`, `prettier`를 적용하는 것을 권장합니다.
+
+## ⚙️ 개발 환경 설정
+
+### 📦 필요한 도구
+
+- Node.js (권장: 18 이상)
+- npm
+
+### 📥 패키지 설치
+
 ```bash
-yarn run start
-# http://localhost:3001 접속
+npm install
+```
+
+### 🚀 개발 서버 실행
+``` bash
+
+npm run dev
+기본 실행 주소: http://localhost:3000
+```
+
+### 🏗️ 프로젝트 빌드
+``` bash
+
+npm run build
+빌드 결과물은 .next/ 디렉터리에 생성됩니다.
+```
+
+### 🧪 빌드 후 실행 (프로덕션 모드)
+``` bash
+
+npm run start
+```
+
+### 🧹 코드 정리 및 검사
+``` bash
+npm run lint
 ```
