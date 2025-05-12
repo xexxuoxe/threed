@@ -54,6 +54,21 @@ my-nextjs-project/
 ├── package.json
 ├── README.md
 └── tsconfig.json
+
+
+home/
+├── components/
+│   ├── HomeCard.tsx
+│   ├── HomeFilter.tsx
+│   ├── HomeHeader.tsx
+│   ├── HomePagination.tsx
+│   └── HomeUserState.tsx
+├── constants/
+│   └── filterOptions.ts
+├── hooks/
+│   └── useHomeFilter.ts
+├── HomeComponent.tsx
+└── home.module.scss
 ```
 
 ## 디렉토리 및 파일 설명
