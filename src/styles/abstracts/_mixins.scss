@@ -1,205 +1,84 @@
-// mixin scss
+/* *******************************
+                common
+**********************************/
 
-// font-face
-@mixin font-face($name, $path, $weight, $format) {
-	@font-face {
-	  font-family: $name;
-	  src: url($path) format($format);
-	  font-weight: $weight;
-	}
+// 가상 클래스
+@mixin pseudo($content, $width, $height) {
+    content: $content;
+    display: block;
+    width: $width;
+    height: $height;
 }
 
-// Flex
-@mixin flex($align: '') {
-	display: flex;
-
-	@if #{$align} == '' {
-		align-items: center;
-	} @else if #{$align} == 'wrap' {
-		flex-wrap: wrap;
-	} @else if #{$align} == 'center' {
-		justify-content: center;
-		align-items: center;
-	} @else if #{$align} == 'between' {
-		justify-content: space-between;
-		align-items: center;
-	} @else if #{$align} == 'end' {
-		justify-content: end;
-		align-items: center;
-	} @else if #{$align} == 'column' {
-		flex-direction: column;
-	}
+// position center
+@mixin positionCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-// Position
-@mixin fullscreen($z: 1, $p: 'absolute') {
-	position: #{$p};
-	top: 0;
-	left: 0;
-	z-index: $z;
-	width: 100%;
-	height: 100%;
+// flex box
+@mixin flexCenter($justify) {
+    display: flex;
+    justify-content: $justify;
+    align-items: center;
 }
 
-@mixin position($p: 'center', $z: 1) {
-	z-index: #{$z};
-
-	@if #{$p} == 'center' {
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		margin: auto;
-	} @else if #{$p} == 'vertical' {
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		margin: auto 0;
-	} @else if #{$p} == 'horizontal' {
-		position: absolute;
-		right: 0;
-		left: 0;
-		margin: 0 auto;
-	}
+@mixin flexbox($jc: center, $ai: center) {
+    display: flex;
+    justify-content: $jc;
+    align-items: $ai;
 }
 
-// 레티나 이미지
-// $url: 이미지 경로 | $extension: 이미지 확장자
-@mixin retina-bgi($uri, $extension) {
-	background-image: url('#{$uri}.#{$extension}');
-
-	@media all and (-webkit-min-device-pixel-ratio: 1.5), all and (-o-min-device-pixel-ratio: 3/2), all and (min--moz-device-pixel-ratio: 1.5), all and (min-device-pixel-ratio: 1.5) {
-		background-image: url('#{$uri}@2x.#{$extension}');
-	}
+@mixin column-flexbox($jc: center, $ai: center) {
+    display: flex;
+    flex-direction: column;
+    justify-content: $jc;
+    align-items: $ai;
 }
 
-// Cross Browsing
-// https://unto.kr/blog/coding-info/only-ie-css/
-// IE10 이상 에서만 스타일 작동
-@mixin IE {
-	// IE10+
-	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-		@content;
-	}
+//text ellipsis
+@mixin ellipsis {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
-// 말줄임 처리
-@mixin text-ellipsis() {
-	display: inline-block;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
+// position
+@mixin position($position, $top: auto, $right: auto, $bottom: auto, $left: auto) {
+    position: $position;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
 }
 
-@mixin box-ellipsis($line: 3, $lineHeight: 20px, $boxHeight: 'auto') {
-	display: -webkit-box;
-	-webkit-line-clamp: $line;
-	-webkit-box-orient: vertical;
-	@if ($boxHeight) == 'fixed' {
-		height: $lineHeight * $line;
-	} @else {
-		max-height: $lineHeight * $line;
-		height: auto;
-	}
-	line-height: $lineHeight;
-	text-align: left;
-	word-break: break-all;
-	word-wrap: break-word;
-	white-space: normal;
-	overflow: hidden;
-}
+//scrollbar custom
+@mixin scrollbar($size) {
+    &::-webkit-scrollbar {
+        width: $size;
+        height: $size;
+    }
 
-// 커스텀 마우스 커서
-// $path: 이미지 경로 | $x: x축 | $y: y축
-@mixin custom-cursor($path, $x: 0, $y: 0) {
-	cursor: url('#{$path}') $x $y, auto !important;
+    &::-webkit-scrollbar-button {
+        width: 0;
+        height: 0;
+    }
 
-	// IE 에서는 x, y 축 이동이 불가능하기 때문에 auto로 초기화
-	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-		cursor: url('#{$path}'), auto !important;
-	}
-}
+    &::-webkit-scrollbar-thumb {
+        background-color: transparent;
+        border-radius: 10px;
+    }
 
-// 사용자 선택 막기
-// $boolean: 활성화/비활성화 (기본값: true)
-@mixin disable($boolean: true) {
-	@if $boolean == true {
-		user-select: none;
-		pointer-events: none;
-		touch-action: none;
-	} @else {
-		user-select: auto;
-		pointer-events: auto;
-		touch-action: auto;
-	}
-}
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
 
-// 기타 (미분류)
-@mixin clearfix {
-	&:after {
-		content: ' ';
-		display: table;
-		width: 100%;
-		clear: both;
-	}
-}
-
-// placeholder
-@mixin placeholder {
-	&::-webkit-input-placeholder {
-		@content;
-	}
-	&::-moz-placeholder {
-		@content;
-	}
-	&:-ms-input-placeholder {
-		@content;
-	}
-	&:-moz-placeholder {
-		@content;
-	}
-	&::placeholder {
-		@content;
-	}
-}
-
-// box sizing 
-@mixin box-sizing {
-	box-sizing: border-box;
-  
-	&::before,
-	&::after {
-		box-sizing: border-box;
-	}
-  
-		* {
-		  box-sizing: border-box;
-  
-	  	&::before,
-			&::after {
-			box-sizing: border-box;
-	  	}
-	}
-}
-
-// padding
-@mixin padding($top: 0, $right: 0, $bottom: 0, $left: 0) {
-	padding: $top $right $bottom $left;
-}
-
-// margin
-@mixin margin($top: 0, $right: 0, $bottom: 0, $left: 0) {
-	margin: $top $right $bottom $left;
-}
-
-// pseudo-element
-@mixin pseudo-element($width: auto, $height: auto, $top: auto, $left: auto, $position: absolute, $display: inline-block) {
-	content: '';
-	display: $display;
-	position: $position;
-	width: $width;
-	height: $height;
-	top: $top;
-	left: $left;
+    &::-webkit-scrollbar-button:start:decrement,
+    &::-webkit-scrollbar-button:end:increment {
+        display: none !important;
+        width: 0;
+        height: 0;
+    }
 }

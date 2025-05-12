@@ -1,18 +1,252 @@
-// HomeComponent에 대한 스타일을 작성합니다.
-// 클래스명은 컴포넌트와 연결됩니다.
+@import "@styles/common";
 
-.homeContainer {
-  padding: 2rem;
-  background-color: #f9f9f9;
+main {
+
+    .main_header {
+        @include flexbox($jc: space-between, $ai: center);
+        padding-bottom: 42px;
+
+        h2 {
+            //@include CommonTitle;
+
+            .ico_fire {
+                display: inline-block;
+                width: 24px;
+                height: 24px;
+                padding-left: 13px;
+                background: url('/images/ico_fire.png') no-repeat center/contain;
+            }
+
+            .ico_face {
+                display: inline-block;
+                width: 24px;
+                height: 24px;
+                padding-left: 13px;
+                background: url('/images/ico_face.png') no-repeat center/contain;
+            }
+        }
+
+        .date_list {
+            select {
+                min-width: 100px;
+                height: 30px;
+                border: 1px solid $color-gray;
+                border-radius: 8px;
+                color: $color-gray-dark;
+                font-size: 16px;
+                -webkit-appearance:none;
+                -moz-appearance:none;
+                appearance:none;
+                background: url('/images/ico_arrow_down.png') no-repeat center/contain;
+                background-size: 11px;
+                background-position: 75px;
+            }
+        }
+    }
+    .card_container {
+        margin-bottom: 65px;
+        padding-bottom: 65px;
+        border-bottom: 1px solid #B3B3B3;
+
+        .card_list {
+            @include flexbox($jc: space-between, $ai: center);
+
+            .card {
+                //@include CommonCard;
+            }
+        }
+    }
+    // filter
+    .filter_area {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+
+        .filter_area_top {
+            @include flexbox($jc: center, $ai: center);
+            width: 636px;
+            gap: 20px;
+            margin-bottom: 30px;
+
+            form {
+                @include flexbox($jc: center, $ai: center);
+                width: auto;
+                height: 49px;
+                border-radius: 12px;
+                filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.2));
+                overflow: hidden;
+
+                input[type="search"] {
+                    width: 530px;
+                    height: 100%;
+                    padding: 12px 16px;
+                    border: none;
+                    font-size: 16px;
+
+                    &:active, &:hover, &:focus {
+                        outline: $color-main;
+                    }
+                }
+                button[type="submit"] {
+                    width: 66px;
+                    height: 49px;
+                    background: $color-main;
+                    border: none;
+
+                    .ico_search {
+                        display: inline-block;
+                        width: 25.15px;
+                        height: 21px;
+                        background: url('/images/ico_serach.png') no-repeat center/contain;
+                    }
+                }
+            }
+
+            .reset_btn {
+                box-sizing: border-box;
+                width: 87px;
+                height: 38px;
+                border-radius: 8px;
+                font-size: 16px;
+                color: #666666;
+                font-weight: 500;
+                border: 1px solid rgba(0, 0, 0, 0.3);
+                background: #fff url('/images/ico_del.png') no-repeat right;
+                background-size: 10px;
+                background-position: 60px 12px;
+                padding-right: 20px;
+                cursor: pointer;
+
+                &:hover, &:active, &:focus {
+                    border: 1px solid $color-main;
+                    color: $color-main;
+                    background: #fff url('/images/ico_del_on.png') no-repeat right;
+                    background-size: 10px;
+                    background-position: 60px 12px;
+                }
+            }
+        }
+
+        .filter_area_bottom {
+            margin-bottom: 50px;
+
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            li {
+                @include flexbox($jc: space-between, $ai: center);
+                gap: 10px;
+                margin-bottom: 15px;
+
+                >* {
+                    width: 100%;
+                    border-radius: 8px;
+                    padding: 11px 16px;
+                    font-size: 16px;
+                    font-weight: 500;
+                    text-align: center;
+                    box-shadow: 0 0 0 1px #ddd;
+                }
+
+                .subject_txt {
+                    min-width: 60px;
+                    width: 60px;
+                    background-color: $color-main;
+                    color: white;
+                }
+
+                button {
+                    color: $color-gray-dark;
+                    border: 1px solid rgb(226 226 226);
+                    background: $color-white;
+                    padding: 7.5px 20px;
+                    cursor: pointer;
+                    transition: all 0.2s;
+
+                    &:hover {
+                        color: $color-main;
+                        border: 1px solid $color-main;
+                    }
+                    &.active {
+                        background-color: #5E3DFF;
+                        border: 1px solid #5E3DFF;
+                        color: $color-white;
+                    }
+                }
+            }
+        }
+    }
+    // main
+    .all_card_container {
+        li {
+            .card {
+                //@include CommonCard;
+            }
+        }
+    }
+    // pagination
+    .pagination_area {
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+        //@include PageNation;
+    }
 }
+// user
+.user_state {
+    position: absolute;
+    bottom: 100px;
+    right: 100px;
+    a { 
+        display: inline-block;
+        box-sizing: content-box;
+        min-width: auto;
+        min-height: 35px;
+        background-color: $color-main;
+        border-radius: 9px;
+        padding: 0 9px;
+        filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.5));
+        overflow: hidden;
 
-.title {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #333;
-}
+        i {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
 
-.description {
-  font-size: 1.2rem;
-  color: #666;
+        }
+        span {
+           display: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: $color-white;
+        }
+         
+        &:hover, &:focus, &:active {
+            padding: 0 12px;
+            > span {
+                display: block;
+            }
+        }
+    }
+    
+    .state_logout {
+        margin-bottom: 10px;
+
+        a {
+            .ico_logout {
+                background: url('/images/ico_logout.png') no-repeat left/contain;
+                background-position: 0 1px;
+            }
+        }
+    }
+    .state_mypage {
+        a {
+            .ico_mypage {
+                background: url("/images/ico_mypage.png") no-repeat left / contain;
+            }
+        }
+    }
 }
